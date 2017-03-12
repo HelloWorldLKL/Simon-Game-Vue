@@ -13,16 +13,9 @@
 </template>
 
 <script type="text/ecmascript-6">
-
-export default {
-  data () {
-    return {
-    }
-  }
-}
+export default {}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="stylus" rel="stylesheet/stylus" scoped>
 .game-panel
   width 450px
@@ -44,6 +37,5 @@ export default {
       margin-left -75px
   .operator-wrapper
     position relative
-    height 50px
     padding 10px 0
 </style>

@@ -26,28 +26,6 @@ export default {
       log: undefined
     }
   },
-  methods: {
-    test() {
-      let self = this
-      for (let i = 0; i <= this.creditArr.length; i++) {
-        console.log(this.randomArr)
-        if (this.randomArr[i] !== this.creditArr[i]) {
-          this.$emit('testErr')
-          this.log = 'ERR'
-          setTimeout(function() {
-            self.log = undefined
-          }, 1000)
-          return console.log('ERR')
-        }
-      }
-      this.$emit('leavelUp')
-      this.log = 'OK'
-      setTimeout(function() {
-        self.log = undefined
-      }, 1000)
-      return console.log('OK')
-    }
-  },
   computed: {
     checkPointText() {
       if (this.checkPoint < 1) {
@@ -64,7 +42,23 @@ export default {
   },
   watch: {
     eventHook: function() {
-      this.test()
+      let self = this
+      for (let i = 0; i <= this.creditArr.length; i++) {
+        if (this.randomArr[i] !== this.creditArr[i]) {
+          this.$emit('testErr')
+          this.log = 'ERR'
+          setTimeout(function() {
+            self.log = undefined
+          }, 1000)
+          return
+        }
+      }
+      this.$emit('leavelUp')
+      this.log = 'OK'
+      setTimeout(function() {
+        self.log = undefined
+      }, 1000)
+      return
     },
     eventHook2: function() {
       let self = this
@@ -75,7 +69,7 @@ export default {
         setTimeout(function() {
           self.log = undefined
         }, 1000)
-        return console.log('ERR')
+        return
       }
     }
   }

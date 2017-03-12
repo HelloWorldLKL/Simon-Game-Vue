@@ -43,7 +43,6 @@ export default {
     },
     creditInput() {
       if (this.stopInput) {
-        console.log('Can\'t Input')
         return
       }
       this.bling(true)

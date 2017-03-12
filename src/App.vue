@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <game-panel>
-      <touch-block v-for="(obj,index) in blockColorArr" :colorStyle="obj" slot="blocks" :key="index" :keyNum="index+1" :blingNum="blingNum" :eventHook="touchEventHook" :stopInput="stopInput" @creditTouch="getCreditInput"></touch-block>
+      <touch-block v-for="(styleObj,index) in blockColorArr" :colorStyle="styleObj" slot="blocks" :key="index" :keyNum="index + 1" :blingNum="blingNum" :eventHook="touchEventHook" :stopInput="stopInput" @creditTouch="getCreditInput"></touch-block>
       <operator-bar slot="operator" @startGame="startGame" @exitGame="exitGame" @repeatGame="showOrderToCredit" @strictModeChange="dealStrictMode"></operator-bar>
-      <tester slot="tester" :checkPoint="checkPoint" :randomArr="randomArr" :creditArr="creditArr" :eventHook="testerEventHook" :eventHook2="testerEventHook2" @leavelUp="leavelUp" @testErr="showOrderToCredit" @testErrStrict="repeatGame"></tester>
+      <tester slot="tester" :checkPoint="checkPoint" :randomArr="randomArr" :creditArr="creditArr" :eventHook="testerEventHook" :eventHook2="testerEventHook2" @leavelUp="leavelUp" @testErr="showOrderToCredit" @testErrStrict="restartGame"></tester>
     </game-panel>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
       this.randomArr = []
       this.stopInput = true
     },
-    repeatGame() {
+    restartGame() {
       this.exitGame()
       this.leavelUp()
     },
@@ -72,7 +72,6 @@ export default {
     },
     dealStrictMode(strictMode) {
       this.strictMode = strictMode
-      console.log(strictMode)
     },
     // 一次完整的游戏流程
     showOrderToCredit() {
